@@ -1,0 +1,151 @@
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+<link rel=stylesheet data-name='vs/editor/editor.main' href='../monaco/editor.main.css' type='text/css'>
+<link rel='stylesheet' type='text/css' href='../css/style.css'></link>
+<script type='text/javascript' src='../js/functions.js'></script>
+<script async='async' type='text/javascript' src='../monaco/sql.js'></script>
+<script src='../monaco/loader.js'></script>
+<script src='../monaco/editor.main.nls.js'></script>
+<script src='../monaco/editor.main.js'></script>
+</head>
+<body class='sql-body' id='scrollable-body'>
+<div id='left-side' class='left-side'><div class='panel'>
+<span class='panel-title source'>&nbsp;Source</span>
+<img tabindex='0' aria-label='Previous problem' role='button' class='nav-button nav-button-disabled' id='source_previous_problem' src='../img/previous_problem.gif' onclick='handleProblemButtonClick(-1, true)' title='Previous problem' />
+<img tabindex='0' aria-label='Next problem' role='button' class='nav-button nav-button-disabled' id='source_next_problem' src='../img/next_problem.gif' onclick='handleProblemButtonClick(1, true)' title='Next problem' />
+<img tabindex='0' aria-label='Previous bookmark' role='button' class='nav-button nav-button-disabled' id='source_previous_bookmark' src='../img/previous_bookmark.gif' onclick='handleBookmarkButtonClick(-1, true)' title='Previous bookmark' />
+<img tabindex='0' aria-label='Next bookmark' role='button' class='nav-button nav-button-disabled' id='source_next_bookmark' src='../img/next_bookmark.gif' onclick='handleBookmarkButtonClick(1, true)' title='Next bookmark' />
+<img tabindex='0' aria-label='Clear bookmarks' role='button' class='nav-button nav-button-disabled' id='source_clear_bookmarks' src='../img/clear_bookmarks.gif' onclick='handleBookmarkButtonClick(0, true)' title='Clear bookmarks' />
+<a class='raw-source-link' target='_blank' aria-label='Raw source' href='./src.sql.txt');'>Raw source</a>
+</div>
+<div class='editor-container'>
+<div id='monaco-left-side'></div><pre id='monaco-left-side-sql'>
+CREATE OR REPLACE 
+	PROCEDURE SP_LOAD_HEALTHCARE_ENCOUNTER
+	AS
+	BEGIN 
+
+		INSERT INTO SAIKIRAN.FACT_ENCOUNTER_TGT(
+			ENCOUNTER_ID, 
+			PATIENT_ID, 
+			PROVIDER_ID, 
+			DIAGNOSIS_ID, 
+			ADMIT_DATE, 
+			DISCHARGE_DATE, 
+			ENCOUNTER_TYPE, 
+			LENGTH_OF_STAY, 
+			TOTAL_CHARGES, 
+			INSURANCE_TYPE, 
+			DISCHARGE_DISPOSITION, 
+			READMISSION_FLAG, 
+			HCPCS_CODE)
+			SELECT 
+				s.ENCOUNTER_ID, 
+				s.PATIENT_ID, 
+				s.PROVIDER_ID, 
+				s.DIAGNOSIS_ID, 
+				s.ADMIT_DATE, 
+				s.DISCHARGE_DATE, 
+				UPPER(s.ENCOUNTER_TYPE), 
+				
+					CASE 
+						WHEN s.ADMIT_DATE IS NOT NULL AND s.DISCHARGE_DATE IS NOT NULL THEN CAST(s.DISCHARGE_DATE AS DATE) - CAST(s.ADMIT_DATE AS DATE)
+						ELSE NULL
+					END AS LENGTH_OF_STAY, 
+				s.TOTAL_CHARGES, 
+				s.INSURANCE_TYPE, 
+				s.DISCHARGE_DISPOSITION, 
+				
+					CASE 
+						WHEN UPPER(s.READMISSION_FLAG) IN ( 'Y', 'YES', '1', 'TRUE' ) THEN 'Y'
+						ELSE 'N'
+					END AS READMISSION_FLAG, 
+				s.HCPCS_CODE
+			FROM SAIKIRAN.STG_ENCOUNTER  s 
+				JOIN SAIKIRAN.DIM_PATIENT  p  ON p.PATIENT_ID = s.PATIENT_ID 
+				JOIN SAIKIRAN.DIM_PROVIDER  pr  ON pr.PROVIDER_ID = s.PROVIDER_ID AND UPPER(pr.IS_ACTIVE) IN ( 'Y', 'YES', '1' ) 
+				JOIN SAIKIRAN.DIM_DIAGNOSIS  d  ON d.DIAGNOSIS_ID = s.DIAGNOSIS_ID
+			WHERE NOT EXISTS 
+				(
+					SELECT 1
+					FROM SAIKIRAN.FACT_ENCOUNTER_TGT  f
+					WHERE f.ENCOUNTER_ID = s.ENCOUNTER_ID
+				);
+
+		COMMIT;
+
+	END;
+</pre></div></div><div id='resize-bar' class='resize-bar'></div><div id='right-side' class='right-side'><div class='panel'>
+<span class='panel-title target'>&nbsp;Target</span>
+<img tabindex='0' aria-label='Previous problem' role='button' class='nav-button nav-button-disabled' id='target_previous_problem' src='../img/previous_problem.gif' onclick='handleProblemButtonClick(-1, false)' title='Previous problem' />
+<img tabindex='0' aria-label='Next problem' role='button' class='nav-button nav-button-disabled' id='target_next_problem' src='../img/next_problem.gif' onclick='handleProblemButtonClick(1, false)' title='Next problem' />
+<img tabindex='0' aria-label='Previous bookmark' role='button' class='nav-button nav-button-disabled' id='target_previous_bookmark' src='../img/previous_bookmark.gif' onclick='handleBookmarkButtonClick(-1, false)' title='Previous bookmark' />
+<img tabindex='0' aria-label='Next bookmark' role='button' class='nav-button nav-button-disabled' id='target_next_bookmark' src='../img/next_bookmark.gif' onclick='handleBookmarkButtonClick(1, false)' title='Next bookmark' />
+<img tabindex='0' aria-label='Clear bookmarks' role='button' class='nav-button nav-button-disabled' id='target_clear_bookmarks' src='../img/clear_bookmarks.gif' onclick='handleBookmarkButtonClick(0, false)' title='Clear bookmarks' />
+</div>
+<div class='editor-container'>
+<div id='monaco-right-side'></div><pre id='monaco-right-side-sql'>
+CREATE PROCEDURE SAIKIRAN.SP_LOAD_HEALTHCARE_ENCOUNTER  
+AS 
+	BEGIN
+
+		INSERT SAIKIRAN.FACT_ENCOUNTER_TGT(
+		   ENCOUNTER_ID, 
+		   PATIENT_ID, 
+		   PROVIDER_ID, 
+		   DIAGNOSIS_ID, 
+		   ADMIT_DATE, 
+		   DISCHARGE_DATE, 
+		   ENCOUNTER_TYPE, 
+		   LENGTH_OF_STAY, 
+		   TOTAL_CHARGES, 
+		   INSURANCE_TYPE, 
+		   DISCHARGE_DISPOSITION, 
+		   READMISSION_FLAG, 
+		   HCPCS_CODE)
+		   SELECT 
+		   	S.ENCOUNTER_ID, 
+		   	S.PATIENT_ID, 
+		   	S.PROVIDER_ID, 
+		   	S.DIAGNOSIS_ID, 
+		   	S.ADMIT_DATE, 
+		   	S.DISCHARGE_DATE, 
+		   	upper(S.ENCOUNTER_TYPE), 
+		   	CASE 
+		   		WHEN S.ADMIT_DATE IS NOT NULL AND S.DISCHARGE_DATE IS NOT NULL THEN ssma_oracle.datediff(CAST(S.DISCHARGE_DATE AS datetime2(0)), CAST(S.ADMIT_DATE AS datetime2(0)))
+		   		ELSE NULL
+		   	END AS LENGTH_OF_STAY, 
+		   	S.TOTAL_CHARGES, 
+		   	S.INSURANCE_TYPE, 
+		   	S.DISCHARGE_DISPOSITION, 
+		   	CASE 
+		   		WHEN upper(S.READMISSION_FLAG) IN ( 'Y', 'YES', '1', 'TRUE' ) THEN 'Y'
+		   		ELSE 'N'
+		   	END AS READMISSION_FLAG, 
+		   	S.HCPCS_CODE
+		   FROM SAIKIRAN.STG_ENCOUNTER  AS S 
+		   	JOIN SAIKIRAN.DIM_PATIENT  AS P 
+		   	ON P.PATIENT_ID = S.PATIENT_ID 
+		   	JOIN SAIKIRAN.DIM_PROVIDER  AS PR 
+		   	ON PR.PROVIDER_ID = S.PROVIDER_ID AND upper(PR.IS_ACTIVE) IN ( 'Y', 'YES', '1' ) 
+		   	JOIN SAIKIRAN.DIM_DIAGNOSIS  AS D 
+		   	ON D.DIAGNOSIS_ID = S.DIAGNOSIS_ID
+		   WHERE NOT EXISTS 
+		   	(
+		   		SELECT 1 AS expr
+		   		FROM SAIKIRAN.FACT_ENCOUNTER_TGT  AS F
+		   		WHERE F.ENCOUNTER_ID = S.ENCOUNTER_ID
+		   	)
+
+		IF @@TRANCOUNT > 0
+			COMMIT TRANSACTION 
+
+	END
+GO</pre></div></div><script>
+var sourceLanguage = 'sql';
+var sourceEditorSelections = [{start:1270, end:1368, guid:'c614af59-3d78-42a9-ad2c-a677153e2510', reflection:['1366f1d2-3794-445f-84e1-7da2242d9f29'], convmessInfoIds:[], convmessWarningIds:[], convmessErrorIds:[]},{start:363, end:1374, guid:'ed8684c9-3230-4918-814d-15c288544984', reflection:['f8c94385-5c66-435c-ad05-a2286ea0d5a8'], convmessInfoIds:[], convmessWarningIds:[], convmessErrorIds:[]},{start:72, end:1375, guid:'a920f176-234e-4156-9ed0-fdd2b622c9ac', reflection:['599a1337-a57c-40d8-a9a3-0ef8ab589ca0'], convmessInfoIds:[], convmessWarningIds:[], convmessErrorIds:[]},{start:1376, end:1386, guid:'697a607c-3264-442d-b279-7646a022e54d', reflection:['46a3971a-ea3f-4c14-b0d4-8549be52e634'], convmessInfoIds:[], convmessWarningIds:[], convmessErrorIds:[]},{start:0, end:1393, guid:'1f9ddb55-5fe8-48eb-9e1b-694b6939fce3', reflection:['8bc88ee0-7b77-45e7-adba-0e1ff7ae1295'], convmessInfoIds:[], convmessWarningIds:[], convmessErrorIds:[]}];
+var targetLanguage = 'sql';
+var targetEditorSelections = [{start:1389, end:1504, guid:'1366f1d2-3794-445f-84e1-7da2242d9f29', reflection:['c614af59-3d78-42a9-ad2c-a677153e2510'], convmessInfoIds:[], convmessWarningIds:[], convmessErrorIds:[]},{start:381, end:1512, guid:'f8c94385-5c66-435c-ad05-a2286ea0d5a8', reflection:['ed8684c9-3230-4918-814d-15c288544984'], convmessInfoIds:[], convmessWarningIds:[], convmessErrorIds:[]},{start:69, end:1512, guid:'599a1337-a57c-40d8-a9a3-0ef8ab589ca0', reflection:['a920f176-234e-4156-9ed0-fdd2b622c9ac'], convmessInfoIds:[], convmessWarningIds:[], convmessErrorIds:[]},{start:1513, end:1557, guid:'46a3971a-ea3f-4c14-b0d4-8549be52e634', reflection:['697a607c-3264-442d-b279-7646a022e54d'], convmessInfoIds:[], convmessWarningIds:[], convmessErrorIds:[]},{start:0, end:1563, guid:'8bc88ee0-7b77-45e7-adba-0e1ff7ae1295', reflection:['1f9ddb55-5fe8-48eb-9e1b-694b6939fce3'], convmessInfoIds:[], convmessWarningIds:[], convmessErrorIds:[]}];
+</script><script src='../js/code.js'></script></body></html>

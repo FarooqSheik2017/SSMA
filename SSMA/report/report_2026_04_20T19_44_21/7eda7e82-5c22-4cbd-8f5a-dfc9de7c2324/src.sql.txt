@@ -1,0 +1,14 @@
+CREATE OR REPLACE TRIGGER SAIKIRAN.TRG_VAL_PROVIDER_ID
+BEFORE INSERT OR UPDATE OF PROVIDER_ID ON "SAIKIRAN"."DIM_PROVIDER" FOR EACH ROW DECLARE    v_count NUMBER;BEGIN
+	-- 1. Validate Not Null
+	IF :NEW.PROVIDER_ID IS NULL THEN        
+	RAISE_APPLICATION_ERROR(-20001, 'PROVIDER_ID cannot be null.');
+    END IF;
+    -- 2. Validate Uniqueness 
+    SELECT COUNT(*)
+    INTO v_count
+    FROM "SAIKIRAN"."DIM_PROVIDER" WHERE PROVIDER_ID = :NEW.PROVIDER_ID
+    AND ROWID != NVL(:OLD.ROWID, '0'); 
+    -- Ensure we aren't checking the record against itself during updates
+    IF v_count > 0 THEN RAISE_APPLICATION_ERROR(-20002, 'PROVIDER_ID must be unique. Value ' || :NEW.PROVIDER_ID || ' already exists.');
+    END IF;END;

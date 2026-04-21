@@ -1,0 +1,367 @@
+
+<html>
+    <head>
+        <meta content='IE=EmulateIE9' http-equiv='X-UA-Compatible' />
+        <meta content='text/html;charset=UTF-8' http-equiv='Content-Type' />
+        <script type='text/javascript' src='js/functions.js'></script>
+        <script type='text/javascript' src='js/messages.js'></script>
+        <link media='all' rel='stylesheet' type='text/css' href='css/messages.css' />
+    </head>
+    <body id='messages-body' scroll='no' onresize='buttonStatusReset();'>
+        <a id='expander_td' class='expander_td' tab-index='0' onclick='showMessages(!isExpanded());return false;' role='button' aria-label='Messages section expanded, press Enter to collapse' href='javascript:void(0);'>
+          <span></span>
+        </a>
+        <div class='main-messages' id='mainDiv'>
+            <div class='panel'>
+                <a id='error' href='javascript:void(0);' role='tab' class='button' onclick='severityTabSelected(this, true)'>
+                    <img class='panel-tab-image' src='img/error.gif'/>
+                    <span class='panel-tab-text' id='espan'>Error (3)</span>
+                    <img class='expander-arrow sort-descending' src='img/expander_arrow_down.gif'/>
+                    <img class='expander-arrow sort-ascending hidden-element' src='img/expander_arrow_up.gif'/>
+                </a>
+                <a id='warning' href='javascript:void(0);' role='tab' class='button' onclick='severityTabSelected(this, true)'>
+                    <img class='panel-tab-image' src='img/warning.gif'/>
+                    <span class='panel-tab-text' id='wspan'>Warning (3)</span>
+                    <img class='expander-arrow sort-descending' src='img/expander_arrow_down.gif'/>
+                    <img class='expander-arrow sort-ascending hidden-element' src='img/expander_arrow_up.gif'/>
+                </a>
+                <a id='info' href='javascript:void(0);' role='tab' class='button' onclick='severityTabSelected(this, true)'>
+                    <img class='panel-tab-image' src='img/info.gif'/>
+                    <span class='panel-tab-text' id='ispan'>Info (0)</span>
+                    <img class='expander-arrow sort-descending' src='img/expander_arrow_down.gif'/>
+                    <img class='expander-arrow sort-ascending hidden-element' src='img/expander_arrow_up.gif'/>
+                </a>
+                <div class='messages-node-select'>
+                    <span>Messages for:</span>
+                    <select class='node-select' id='node-select' onchange='nodeSelectChanged(this)'>
+                        <option id='select-all' value='all'>All Objects</option>
+                        <option id='select-variable' value=''>Current Object</option>
+                    </select>
+                </div>
+            </div>
+            <div id='innerDiv'>
+                <div class='messages-window'>
+
+<div id='error-messages' class='all'>
+<div class='message-flex-body'>
+<div data-estimate='1.0' data-severity='error' class='conversion-message'>
+<tbody>
+  <tr>
+    <td>
+      <a onclick="toggle(this)" href="javascript:void(0);" class="expander-link" role="button" aria-label="O2SS0269 : Functional index cannot be converted, collapsed, press Enter to expand">
+        <img class="messageMinimized" src="img/nolines_plus.gif"></img>
+      </a>
+      <img class="tableIcons" src="img/error.gif"></img>
+      &nbsp;
+      <span dataFld="description">
+        <span>O2SS0269</span>
+        <span data-estimate='1.0' class='estimate'>
+        (1.0h)
+        </span>
+        <span>: Functional index cannot be converted</span>
+        <span class='number-of-issues'>(2)</span>
+      </span>
+      <table class="hidden-element">
+        <tbody>
+          <tr>
+            <td>
+              <div>
+                <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                  <a href="javascript:void(0);" role="button" data-estimate="0.5" data-issues="1" data-node-id="f0e05084-3c97-4c0e-8695-99bd11bce349" style="display: block;" class="node-message f0e05084-3c97-4c0e-8695-99bd11bce349" onclick="treeNav(&#39;f0e05084-3c97-4c0e-8695-99bd11bce349&#39;, &#39;O2SS0269&#39;)">
+                    <img src="img/index_error.gif"></img>
+                    SAIKIRAN.DIM_PATIENT_BKP.IDX_UPPER_NAME2 (1), estimated manual conversion time: 0.5 hr(s)</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                  <a href="javascript:void(0);" role="button" data-estimate="0.5" data-issues="1" data-node-id="f8eef90c-75a6-4966-b48b-99fcacd6dc94" style="display: block;" class="node-message f8eef90c-75a6-4966-b48b-99fcacd6dc94" onclick="treeNav(&#39;f8eef90c-75a6-4966-b48b-99fcacd6dc94&#39;, &#39;O2SS0269&#39;)">
+                    <img src="img/index_error.gif"></img>
+                    SAIKIRAN.DIM_PATIENT.IDX_UPPER_NAME (1), estimated manual conversion time: 0.5 hr(s)</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</tbody>
+</div>
+<div data-estimate='0.5' data-severity='error' class='conversion-message'>
+<tbody>
+  <tr>
+    <td>
+      <a onclick="toggle(this)" href="javascript:void(0);" class="expander-link" role="button" aria-label="O2SS0065 : Unable to convert index on a virtual column, collapsed, press Enter to expand">
+        <img class="messageMinimized" src="img/nolines_plus.gif"></img>
+      </a>
+      <img class="tableIcons" src="img/error.gif"></img>
+      &nbsp;
+      <span dataFld="description">
+        <span>O2SS0065</span>
+        <span data-estimate='0.5' class='estimate'>
+        (0.5h)
+        </span>
+        <span>: Unable to convert index on a virtual column</span>
+        <span class='number-of-issues'>(1)</span>
+      </span>
+      <table class="hidden-element">
+        <tbody>
+          <tr>
+            <td>
+              <div>
+                <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                  <a href="javascript:void(0);" role="button" data-estimate="0.5" data-issues="1" data-node-id="f8eef90c-75a6-4966-b48b-99fcacd6dc94" style="display: block;" class="node-message f8eef90c-75a6-4966-b48b-99fcacd6dc94" onclick="treeNav(&#39;f8eef90c-75a6-4966-b48b-99fcacd6dc94&#39;, &#39;O2SS0065&#39;)">
+                    <img src="img/index_error.gif"></img>
+                    SAIKIRAN.DIM_PATIENT.IDX_UPPER_NAME (1), estimated manual conversion time: 0.5 hr(s)</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</tbody>
+</div>
+<div data-estimate='0.4' data-severity='error' class='conversion-message'>
+<tbody>
+  <tr>
+    <td>
+      <a onclick="toggle(this)" href="javascript:void(0);" class="expander-link" role="button" aria-label="O2SS0083 : Unresolved identifier, collapsed, press Enter to expand">
+        <img class="messageMinimized" src="img/nolines_plus.gif"></img>
+      </a>
+      <img class="tableIcons" src="img/error.gif"></img>
+      &nbsp;
+      <span dataFld="description">
+        <span>O2SS0083</span>
+        <span data-estimate='0.4' class='estimate'>
+        (0.4h)
+        </span>
+        <span>: Unresolved identifier</span>
+        <span class='number-of-issues'>(2)</span>
+      </span>
+      <table class="hidden-element">
+        <tbody>
+          <tr>
+            <td>
+              <div>
+                <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                  <a href="javascript:void(0);" role="button" data-estimate="0.4" data-issues="2" data-node-id="7eda7e82-5c22-4cbd-8f5a-dfc9de7c2324" style="display: block;" class="node-message 7eda7e82-5c22-4cbd-8f5a-dfc9de7c2324" onclick="treeNav(&#39;7eda7e82-5c22-4cbd-8f5a-dfc9de7c2324&#39;, &#39;O2SS0083&#39;)">
+                    <img src="img/trigger_error.gif"></img>
+                    SAIKIRAN.DIM_PROVIDER.Triggers (2), estimated manual conversion time: 0.4 hr(s)</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</tbody>
+</div>
+</div>
+</div>
+<div id='warning-messages' class='all'>
+<div class='message-flex-body'>
+<div data-estimate='0.5' data-severity='warning' class='conversion-message'>
+<tbody>
+  <tr>
+    <td>
+      <a onclick="toggle(this)" href="javascript:void(0);" class="expander-link" role="button" aria-label="O2SS0087 : Column was not converted, collapsed, press Enter to expand">
+        <img class="messageMinimized" src="img/nolines_plus.gif"></img>
+      </a>
+      <img class="tableIcons" src="img/warning.gif"></img>
+      &nbsp;
+      <span dataFld="description">
+        <span>O2SS0087</span>
+        <span data-estimate='0.5' class='estimate'>
+        (0.5h)
+        </span>
+        <span>: Column was not converted</span>
+        <span class='number-of-issues'>(1)</span>
+      </span>
+      <table class="hidden-element">
+        <tbody>
+          <tr>
+            <td>
+              <div>
+                <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                  <a href="javascript:void(0);" role="button" data-estimate="0.5" data-issues="1" data-node-id="f8eef90c-75a6-4966-b48b-99fcacd6dc94" style="display: block;" class="node-message f8eef90c-75a6-4966-b48b-99fcacd6dc94" onclick="treeNav(&#39;f8eef90c-75a6-4966-b48b-99fcacd6dc94&#39;, &#39;O2SS0087&#39;)">
+                    <img src="img/index_warning.gif"></img>
+                    SAIKIRAN.DIM_PATIENT.IDX_UPPER_NAME (1), estimated manual conversion time: 0.5 hr(s)</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</tbody>
+</div>
+<div data-estimate='0.0' data-severity='warning' class='conversion-message'>
+<tbody>
+  <tr>
+    <td>
+      <a onclick="toggle(this)" href="javascript:void(0);" class="expander-link" role="button" aria-label="O2SS0113 : Value of @@FETCH_STATUS might change, collapsed, press Enter to expand">
+        <img class="messageMinimized" src="img/nolines_plus.gif"></img>
+      </a>
+      <img class="tableIcons" src="img/warning.gif"></img>
+      &nbsp;
+      <span dataFld="description">
+        <span>O2SS0113</span>
+        <span data-estimate='0' class='estimate'>
+        
+        </span>
+        <span>: Value of @@FETCH_STATUS might change</span>
+        <span class='number-of-issues'>(1)</span>
+      </span>
+      <table class="hidden-element">
+        <tbody>
+          <tr>
+            <td>
+              <div>
+                <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                  <a href="javascript:void(0);" role="button" data-estimate="0" data-issues="1" data-node-id="05d6d826-9927-4a5b-b7a1-9aacedc7930b" style="display: block;" class="node-message 05d6d826-9927-4a5b-b7a1-9aacedc7930b" onclick="treeNav(&#39;05d6d826-9927-4a5b-b7a1-9aacedc7930b&#39;, &#39;O2SS0113&#39;)">
+                    <img src="img/procedure_warning.gif"></img>
+                    SAIKIRAN.DISPLAY_OUT_PATIENTS (1)</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</tbody>
+</div>
+<div data-estimate='0.0' data-severity='warning' class='conversion-message'>
+<tbody>
+  <tr>
+    <td>
+      <a onclick="toggle(this)" href="javascript:void(0);" class="expander-link" role="button" aria-label="O2SS0356 : Conversion from NUMBER datatype can cause data loss, collapsed, press Enter to expand">
+        <img class="messageMinimized" src="img/nolines_plus.gif"></img>
+      </a>
+      <img class="tableIcons" src="img/warning.gif"></img>
+      &nbsp;
+      <span dataFld="description">
+        <span>O2SS0356</span>
+        <span data-estimate='0' class='estimate'>
+        
+        </span>
+        <span>: Conversion from NUMBER datatype can cause data loss</span>
+        <span class='number-of-issues'>(18)</span>
+      </span>
+      <table class="hidden-element">
+        <tbody>
+          <tr>
+            <td>
+              <div>
+                <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                  <a href="javascript:void(0);" role="button" data-estimate="0" data-issues="2" data-node-id="1faf98e6-033f-45ea-8f8a-1ea34593c3a6" style="display: block;" class="node-message 1faf98e6-033f-45ea-8f8a-1ea34593c3a6" onclick="treeNav(&#39;1faf98e6-033f-45ea-8f8a-1ea34593c3a6&#39;, &#39;O2SS0356&#39;)">
+                    <img src="img/table_warning.gif"></img>
+                    SAIKIRAN.BRONZE_PRODUCT (2)</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                  <a href="javascript:void(0);" role="button" data-estimate="0" data-issues="3" data-node-id="2cdf8e4b-2071-418e-8752-7c37f44832b3" style="display: block;" class="node-message 2cdf8e4b-2071-418e-8752-7c37f44832b3" onclick="treeNav(&#39;2cdf8e4b-2071-418e-8752-7c37f44832b3&#39;, &#39;O2SS0356&#39;)">
+                    <img src="img/table_warning.gif"></img>
+                    SAIKIRAN.EMPLOYMENT (3)</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                  <a href="javascript:void(0);" role="button" data-estimate="0" data-issues="1" data-node-id="481707de-4a3d-4fc9-b9f3-47a19ec1406a" style="display: block;" class="node-message 481707de-4a3d-4fc9-b9f3-47a19ec1406a" onclick="treeNav(&#39;481707de-4a3d-4fc9-b9f3-47a19ec1406a&#39;, &#39;O2SS0356&#39;)">
+                    <img src="img/table_warning.gif"></img>
+                    SAIKIRAN.DIM_PATIENT_BKP (1)</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                  <a href="javascript:void(0);" role="button" data-estimate="0" data-issues="3" data-node-id="757a2557-acf7-458e-96a4-2ba39543a4f3" style="display: block;" class="node-message 757a2557-acf7-458e-96a4-2ba39543a4f3" onclick="treeNav(&#39;757a2557-acf7-458e-96a4-2ba39543a4f3&#39;, &#39;O2SS0356&#39;)">
+                    <img src="img/table_warning.gif"></img>
+                    SAIKIRAN.EMPLOYMENT_TYPE (3)</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                  <a href="javascript:void(0);" role="button" data-estimate="0" data-issues="2" data-node-id="7eda7e82-5c22-4cbd-8f5a-dfc9de7c2324" style="display: block;" class="node-message 7eda7e82-5c22-4cbd-8f5a-dfc9de7c2324" onclick="treeNav(&#39;7eda7e82-5c22-4cbd-8f5a-dfc9de7c2324&#39;, &#39;O2SS0356&#39;)">
+                    <img src="img/trigger_warning.gif"></img>
+                    SAIKIRAN.DIM_PROVIDER.Triggers (2)</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                  <a href="javascript:void(0);" role="button" data-estimate="0" data-issues="3" data-node-id="bc94b708-0c96-4009-9f9e-a1809a2b1593" style="display: block;" class="node-message bc94b708-0c96-4009-9f9e-a1809a2b1593" onclick="treeNav(&#39;bc94b708-0c96-4009-9f9e-a1809a2b1593&#39;, &#39;O2SS0356&#39;)">
+                    <img src="img/table_warning.gif"></img>
+                    SAIKIRAN.EMPSHARE_ORG_RELATIONSHIP (3)</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                  <a href="javascript:void(0);" role="button" data-estimate="0" data-issues="1" data-node-id="c1ca6749-8d7c-49b8-86e7-7facac933fb6" style="display: block;" class="node-message c1ca6749-8d7c-49b8-86e7-7facac933fb6" onclick="treeNav(&#39;c1ca6749-8d7c-49b8-86e7-7facac933fb6&#39;, &#39;O2SS0356&#39;)">
+                    <img src="img/materialized_view_warning.gif"></img>
+                    SAIKIRAN.DIM_DIAGNOSIS_MV (1)</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                  <a href="javascript:void(0);" role="button" data-estimate="0" data-issues="3" data-node-id="f8dd5ffa-9d5e-4bd0-9805-6210bc2844c4" style="display: block;" class="node-message f8dd5ffa-9d5e-4bd0-9805-6210bc2844c4" onclick="treeNav(&#39;f8dd5ffa-9d5e-4bd0-9805-6210bc2844c4&#39;, &#39;O2SS0356&#39;)">
+                    <img src="img/table_warning.gif"></img>
+                    SAIKIRAN.BRONZE_ORDER_INFO (3)</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</tbody>
+</div>
+</div>
+</div>
+<div id='info-messages' class='all'>
+<div class='message-flex-body'>
+</div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
